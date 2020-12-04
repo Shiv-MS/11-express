@@ -1,4 +1,14 @@
 // DEPENDENCIES
+
+/*
+Int
+String
+Boolean
+
+Array
+Object
+*/
+
 var express = require("express");
 
 // Tells node that we are creating an "express" server
@@ -11,11 +21,11 @@ var PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
 
 // The below points our server to a series of "route" files.
-require(".routes/apiRoutes")(app);
-require(".routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 // The below code effectively "starts" our server
 app.listen(PORT, function () {
