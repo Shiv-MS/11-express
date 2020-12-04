@@ -21,24 +21,24 @@ module.exports = app => {
             }
         })
     });
-    app.post("/api/notes", async (req, res) => {
-        const newNote = req.body;
-        newNote.id = uuidv4()
-        console.log(newNote);
-        // This is where I need to write to the Json file
-        fs.readFile(dbLink, "utf8", (err, data) => {
-            console.log(data)
-        })
-        console.log(old_data)
-        // Modify the array thta comes back from read file
-        old_data.push(newNote);
-        await fs.writeFile(dbLink, old_data "utf8")
-        let new_write = JSON.parse(await fs.readFile(dbLink, "utf-8"))
-        res.json(new_write)
+    // app.post("/api/notes", async (req, res) => {
+    //     const newNote = req.body;
+    //     newNote.id = uuidv4()
+    //     console.log(newNote);
+    //     // This is where I need to write to the Json file
+    //     fs.readFile(dbLink, "utf8", (err, data) => {
+    //         console.log(data)
+    //     })
+    //     console.log(old_data)
+    //     // Modify the array thta comes back from read file
+    //     old_data.push(newNote);
+    //     await fs.writeFile(dbLink, old_data "utf8")
+    //     let new_write = JSON.parse(await fs.readFile(dbLink, "utf-8"))
+    //     res.json(new_write)
 
-    });
-    app.delete("/api/notes", (req, res) => {
+    // });
+    // app.delete("/api/notes", (req, res) => {
 
-    })
+    // })
 }
 
