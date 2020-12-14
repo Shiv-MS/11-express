@@ -49,7 +49,7 @@ module.exports = app => {
 
                 data = JSON.parse(data);
 
-                const updateNotes = arrayNotes.filter(notes => notes.id !== id);
+                const updateNotes = data.filter(notes => notes.id !== id);
 
                 const updateDB = JSON.stringify(updateNotes);
 
