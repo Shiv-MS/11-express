@@ -1,13 +1,3 @@
-// DEPENDENCIES
-
-/*
-Int
-String
-Boolean
-
-Array
-Object
-*/
 
 var express = require("express");
 

@@ -21,23 +21,28 @@ module.exports = app => {
             }
         })
     });
-    // app.post("/api/notes", async (req, res) => {
-    //     const newNote = req.body;
-    //     newNote.id = uuidv4()
-    //     console.log(newNote);
-    //     // This is where I need to write to the Json file
-    //     fs.readFile(dbLink, "utf8", (err, data) => {
-    //         console.log(data)
-    //     })
-    //     console.log(old_data)
-    //     // Modify the array thta comes back from read file
-    //     old_data.push(newNote);
-    //     await fs.writeFile(dbLink, old_data "utf8")
-    //     let new_write = JSON.parse(await fs.readFile(dbLink, "utf-8"))
-    //     res.json(new_write)
-
-    // });
-    // app.delete("/api/notes", (req, res) => {
+    app.post("/api/notes", (req, res) => {
+        const newNote = req.body;
+        const id = uuidv4();
+        newNote.id = id;
+        console.log(newNote);
+        // newNote.id = uuidv4()
+        // This is where I need to write to the Json file
+        fs.readFile(dbLink, "utf8", (err, data) => {
+            console.log(data)
+            const notes = JSON.parse(data)
+            notes.push(newNote)
+            // Modify the array that comes back from read file
+            JSON.parse(data).push(newNote);
+            fs.writeFile(dbLink, JSON.stringify(notes), (err) => {
+                console.log(err)
+                res.send("Database Updated")
+            })
+            // let new_write = JSON.parse(fs.readFile(dbLink, "utf-8"))
+            // res.json(new_write)
+        })
+    });
+    // app.delete("/api/notes/:id", (req, res) => {
 
     // })
 }
