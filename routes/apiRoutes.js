@@ -31,6 +31,7 @@ module.exports = app => {
         fs.readFile(dbLink, "utf8", (err, data) => {
             console.log(data)
             const notes = JSON.parse(data)
+            //adding to array
             notes.push(newNote)
             // Modify the array that comes back from read file
             JSON.parse(data).push(newNote);
@@ -42,8 +43,18 @@ module.exports = app => {
             // res.json(new_write)
         })
     });
-    // app.delete("/api/notes/:id", (req, res) => {
+    app.delete("/api/notes/:id", (req, res) => {
+        const id = req.params.id
+        fs.readFile(dbLink, "utf8", (error, data) =>{
 
-    // })
+                data = JSON.parse(data);
+
+                const updateNotes = arrayNotes.filter(notes => notes.id !== id);
+
+                const updateDB = JSON.stringify(updateNotes);
+
+                fs.writeFile(dbLink, updateDB, err => err ? console.log(error) : console.log("Updated db.json"));
+                return res.json(true);
+        })
+    })
 }
-
